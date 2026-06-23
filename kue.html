@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kue Kering Nur Aini Mahlan - Premium & Tanpa Pengawet</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bakery: {
+                            50: '#fdfbf7',
+                            100: '#fbf5e6',
+                            200: '#f5e6cc',
+                            300: '#edd09f',
+                            400: '#e1b36d',
+                            500: '#d59443',
+                            600: '#c57831',
+                            700: '#a35926',
+                            800: '#834421',
+                            900: '#6b371d',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Premium Utilities */
+        .glass-nav {
+            background: rgba(253, 251, 247, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .text-glow {
+            text-shadow: 0 2px 10px rgba(197, 120, 49, 0.2);
+        }
+        /* Hide scrollbar but keep functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-bakery-50 text-gray-800 font-sans antialiased overflow-x-hidden">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-bakery-200 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <div class="w-10 h-10 rounded-full bg-bakery-600 flex items-center justify-center text-white shadow-md">
+                        <img src="Kue Logo.jpg" alt="Logo Kue" class="w-full h-full object-contain">
+                    </div>
+                    <div>
+                        <span class="font-serif font-bold text-xl tracking-wide text-bakery-900 block leading-tight">Misnawati</span>
+                        <span class="text-[10px] tracking-widest text-bakery-600 uppercase font-semibold block">Kue Kering Premium</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#beranda" class="text-bakery-900 hover:text-bakery-600 font-medium transition-colors">Beranda</a>
+                    <a href="#keunggulan" class="text-bakery-900 hover:text-bakery-600 font-medium transition-colors">Keunggulan</a>
+                    <a href="#katalog" class="text-bakery-900 hover:text-bakery-600 font-medium transition-colors">Menu Kue</a>
+                    <a href="#kustom" class="text-bakery-900 hover:text-bakery-600 font-medium transition-colors">Pesanan Custom</a>
+                    <a href="#tentang" class="text-bakery-900 hover:text-bakery-600 font-medium transition-colors">Tentang Kami</a>
+                    <a href="#faq" class="text-bakery-900 hover:text-bakery-600 font-medium transition-colors">Bantuan</a>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <!-- Cart Trigger -->
+                    <button onclick="toggleCart()" class="relative p-2 text-bakery-900 hover:text-bakery-600 transition-colors focus:outline-none">
+                        <i class="fa-solid fa-shopping-bag text-2xl"></i>
+                        <span id="cart-count" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold hidden">0</span>
+                    </button>
+                    <a href="#kustom" class="bg-bakery-700 hover:bg-bakery-800 text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-calendar-day mr-1.5"></i> Pesan Custom / Hampers
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center gap-4">
+                    <button onclick="toggleCart()" class="relative p-2 text-bakery-900 hover:text-bakery-600 transition-colors">
+                        <i class="fa-solid fa-shopping-bag text-2xl"></i>
+                        <span id="cart-count-mobile" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold hidden">0</span>
+                    </button>
+                    <button onclick="toggleMobileMenu()" class="text-bakery-900 hover:text-bakery-600 focus:outline-none focus:ring-2 focus:ring-bakery-500 rounded-lg p-2">
+                        <i id="menu-icon" class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Drawer) -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-bakery-200 bg-bakery-50 px-4 pt-2 pb-6 space-y-3 shadow-inner">
+            <a href="#beranda" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-xl text-bakery-900 hover:bg-bakery-100 font-medium">Beranda</a>
+            <a href="#keunggulan" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-xl text-bakery-900 hover:bg-bakery-100 font-medium">Keunggulan</a>
+            <a href="#katalog" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-xl text-bakery-900 hover:bg-bakery-100 font-medium">Menu Kue</a>
+            <a href="#kustom" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-xl text-bakery-900 hover:bg-bakery-100 font-medium">Pesanan Custom</a>
+            <a href="#tentang" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-xl text-bakery-900 hover:bg-bakery-100 font-medium">Tentang Kami</a>
+            <a href="#faq" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-xl text-bakery-900 hover:bg-bakery-100 font-medium">Bantuan</a>
+            <a href="#kustom" onclick="toggleMobileMenu()" class="block w-full text-center bg-bakery-700 text-white py-3 rounded-xl font-semibold shadow-md">
+                <i class="fa-solid fa-calendar-day mr-1.5"></i> Pesan Custom / Hampers
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="beranda" class="relative pt-24 pb-20 md:pt-32 md:pb-32 bg-gradient-to-b from-bakery-100 to-bakery-50 overflow-hidden">
+        <!-- Floating shapes background -->
+        <div class="absolute inset-0 z-0 opacity-40 pointer-events-none">
+            <div class="absolute top-20 left-10 w-32 h-32 bg-bakery-200 rounded-full blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-10 right-10 w-48 h-48 bg-bakery-300 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Hero Text -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-bakery-200 text-bakery-800 text-xs font-bold tracking-wide uppercase shadow-sm">
+                        <i class="fa-solid fa-star text-amber-500"></i> Pusat Kue Kering Rumahan
+                    </span>
+                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-bakery-950 leading-tight">
+                        Kehangatan Kue Kering Premium, <span class="text-bakery-700 italic text-glow">Tanpa Pengawet</span>
+                    </h1>
+                    <p class="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0">
+                        Kue kering premium yang dibuat dari bahan pilihan untuk menemani setiap momen istimewa Anda. Nikmati kelezatan otentik yang aman dikonsumsi si kecil, lengkap dengan pilihan hiasan kustom sesuai keinginan.
+                    
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#katalog" class="w-full sm:w-auto px-8 py-4 rounded-full bg-bakery-600 hover:bg-bakery-700 text-white font-bold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 text-center flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-cookie"></i> Lihat Katalog Kue
+                        </a>
+                        <a href="#kustom" class="w-full sm:w-auto px-8 py-4 rounded-full border-2 border-bakery-600 text-bakery-800 hover:bg-bakery-100 font-bold transition-all text-center flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-wand-magic-sparkles text-bakery-600"></i> Request Desain / Hampers
+                        </a>
+                    </div>
+
+                    <!-- Trust indicators -->
+                    <div class="pt-6 grid grid-cols-3 gap-4 border-t border-bakery-200/60 max-w-md mx-auto lg:mx-0">
+                        <div class="text-center lg:text-left">
+                            <span class="block text-2xl font-bold text-bakery-900">100%</span>
+                            <span class="text-xs text-gray-500">Tanpa Pengawet</span>
+                        </div>
+                        <div class="text-center lg:text-left">
+                            <span class="block text-2xl font-bold text-bakery-900">Margarin Pilihan</span>
+                            <span class="text-xs text-gray-500">Butter Premium</span>
+                        </div>
+                        <div class="text-center lg:text-left">
+                            <span class="block text-2xl font-bold text-bakery-900">Custom</span>
+                            <span class="text-xs text-gray-500">Bebas Request Hiasan</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Image Showcase -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative w-72 h-72 sm:w-96 sm:h-96 mx-auto rounded-3xl overflow-hidden shadow-2xl border-4 border-white rotate-3 hover:rotate-0 transition-transform duration-500">
+                        <img id="hero-showcase-img" src="Kue nastar.jpg"
+                             alt="Kue Kering Nastar Premium Misnawati" 
+                             class="w-full h-full object-cover"
+                             onerror="this.src='https://placehold.co/600x600/f5e6cc/834421?text=Kue+Kering+Misnawati'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-6">
+                            <p class="text-white text-sm font-semibold italic">Nastar Klasik Premium kami menggunakan Margarin pilihan.</p>
+                        </div>
+                    </div>
+                    <!-- Absolute Decorative Icons -->
+                    <div class="absolute -top-4 right-12 bg-white p-3 rounded-full shadow-lg border border-bakery-100 animate-bounce" style="animation-duration: 3s;">
+                        <span class="text-2xl">🍯</span>
+                    </div>
+                    <div class="absolute -bottom-4 left-12 bg-white p-3 rounded-full shadow-lg border border-bakery-100 animate-bounce" style="animation-duration: 4s;">
+                        <span class="text-2xl">🧈</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- USP Section (Keunggulan) -->
+    <section id="keunggulan" class="py-16 bg-white border-y border-bakery-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-bakery-600 font-bold tracking-wider text-xs uppercase block mb-2">Kenapa Memilih Kami?</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-bakery-950">Rahasia Kelezatan Dapur Misnawati</h2>
+                <div class="w-16 h-1 bg-bakery-500 mx-auto mt-4 rounded"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-bakery-50 p-8 rounded-2xl border border-bakery-100 hover:shadow-xl hover:border-bakery-300 transition-all text-center">
+                    <div class="w-14 h-14 bg-bakery-100 text-bakery-700 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
+                        <i class="fa-solid fa-award text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-bakery-900 mb-3">Bahan Premium</h3>
+                    <p class="text-gray-650 text-sm leading-relaxed">
+                        Dibuat dengan sepenuh hati menggunakan resep rumahan asli. Menggunakan terigu pilihan, taburan keju yang royal, dan mentega pilihan yang bikin kuenya renyah, gurih, dan lumer di setiap gigitan.
+                    </p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-bakery-50 p-8 rounded-2xl border border-bakery-100 hover:shadow-xl hover:border-bakery-300 transition-all text-center">
+                    <div class="w-14 h-14 bg-bakery-100 text-bakery-700 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
+                        <i class="fa-solid fa-leaf text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-bakery-900 mb-3">100% Tanpa Pengawet</h3>
+                    <p class="text-gray-650 text-sm leading-relaxed">
+                        Dibuat dengan bahan resep pilihan untuk setiap momen istimewa Anda. Rasa nikmat yang otentik, aman dikonsumsi untuk si kecil, dan dapat dipesan dengan hiasan kustom.
+                    </p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-bakery-50 p-8 rounded-2xl border border-bakery-100 hover:shadow-xl hover:border-bakery-300 transition-all text-center">
+                    <div class="w-14 h-14 bg-bakery-100 text-bakery-700 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
+                        <i class="fa-solid fa-palette text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-bakery-900 mb-3">Custom Desain & Hampers</h3>
+                    <p class="text-gray-650 text-sm leading-relaxed">
+                        Wujudkan momen spesial Anda dengan kue kering custom. Kami melayani pembuatan kue kering berkarakter unik untuk anak-anak, hingga paket hampers eksklusif dengan logo perusahaan demi impresi terbaik bagi klien VIP Anda.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Market Segment Section -->
+    <section class="py-16 bg-bakery-100/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-bakery-600 font-bold tracking-wider text-xs uppercase block mb-2">Solusi Spesifik Untuk Anda</span>
+                <h2 class="font-serif text-3xl font-bold text-bakery-950">Kami Melayani Segala Kebutuhan</h2>
+            </div>
+
+            <!-- Tab Buttons -->
+            <div class="flex justify-center mb-8">
+                <div class="inline-flex p-1 bg-white rounded-full border border-bakery-200 shadow-sm">
+                    <button onclick="switchMarket('keluarga')" id="tab-keluarga" class="px-6 py-2.5 rounded-full text-sm font-bold transition-all bg-bakery-700 text-white">
+                        <i class="fa-solid fa-house mr-1.5"></i> Untuk Ibu & Keluarga
+                    </button>
+                    <button onclick="switchMarket('kantor')" id="tab-kantor" class="px-6 py-2.5 rounded-full text-sm font-bold transition-all text-bakery-900 hover:text-bakery-700">
+                        <i class="fa-solid fa-building-briefcase mr-1.5"></i> Untuk Kantor & Bisnis
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab Content: Keluarga -->
+            <div id="content-keluarga" class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <h3 class="font-serif text-2xl lg:text-3xl font-bold text-bakery-900">Sajian Hangat untuk Keluarga & Acara Arisan</h3>
+                    <p class="text-gray-650 leading-relaxed">
+                        Sajikan kue kering terbaik untuk momen spesial Anda dan keluarga. Kami mengerti pentingnya kehangatan di setiap gigitan saat berkumpul bersama. Dengan kue kering Misnawati, hadirkan kelezatan nastar dan kue kering klasik yang renyah, gurih, dan lumer di mulut. Sangat pas untuk hidangan hari raya Lebaran, arisan, atau buah tangan saat silaturahmi keluarga besar.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3 text-sm">
+                            <i class="fa-solid fa-circle-check text-green-600 mt-1"></i>
+                            <span><strong>Pilihan Rasa Klasik:</strong> Varian resep rumahan otentik yang pas manisnya, cocok untuk dinikmati seluruh generasi dari lansia hingga anak-anak.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm">
+                            <i class="fa-solid fa-circle-check text-green-600 mt-1"></i>
+                            <span><strong>Aneka Ragam Kue Lebaran:</strong> Tersedia berbagai macam pilihan kue kering tradisional favorit keluarga yang selalu dinanti di meja tamu.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm">
+                            <i class="fa-solid fa-circle-check text-green-600 mt-1"></i>
+                            <span><strong>Garansi Kue Utuh:</strong> Pengemasan aman dengan double wrap khusus pengiriman instan/sameday agar stoples dan kue tetap cantik sampai di rumah Anda.</span>
+                        </li>
+                    </ul>
+                    <a href="#katalog" class="inline-flex items-center gap-2 text-bakery-700 font-bold hover:text-bakery-800 transition-colors">
+                        Lihat Menu Keluarga <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="relative rounded-2xl overflow-hidden shadow-lg h-90">
+                    <img src="Kue Kering Ibu dan Keluarga.png" alt="Ibu dan Keluarga" class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <!-- Tab Content: Kantor (Hidden initially) -->
+            <div id="content-kantor" class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center hidden">
+                <div class="space-y-6">
+                    <h3 class="font-serif text-2xl lg:text-3xl font-bold text-bakery-900">Souvenir Eksklusif & Hampers Korporat</h3>
+                    <p class="text-gray-650 leading-relaxed">
+                        Beri kesan terbaik bagi mitra bisnis, jajaran direksi, maupun kolega kantor Anda. Kami menyediakan pembuatan hampers kue kering hari raya (Lebaran, Natal, Imlek, dll.) dalam kuantitas besar dengan kustomisasi logo perusahaan Anda di kemasan maupun di atas kue itu sendiri.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3 text-sm">
+                            <i class="fa-solid fa-circle-check text-green-600 mt-1"></i>
+                            <span><strong>Custom Logo Perusahaan:</strong> Cetak logo kantor Anda pada hangtag, boks kustom, atau cookies hias premium.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm">
+                            <i class="fa-solid fa-circle-check text-green-600 mt-1"></i>
+                            <span><strong>Kuitansi & Invoice Resmi:</strong> Legalitas lengkap untuk pembukuan dan administrasi divisi keuangan Anda.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm">
+                            <i class="fa-solid fa-circle-check text-green-600 mt-1"></i>
+                            <span><strong>Diskon Kuantitas Besar:</strong> Harga khusus berjenjang sesuai dengan jumlah order korporat Anda.</span>
+                        </li>
+                    </ul>
+                    <a href="#kustom" class="inline-flex items-center gap-2 text-bakery-700 font-bold hover:text-bakery-800 transition-colors">
+                        Hubungi Sales Korporat Kami <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="relative rounded-2xl overflow-hidden shadow-lg h-90">
+                    <img src="Kue Kering Hampers.jfif" alt="Hampers Kantor Premium" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalog Section (Menu Kue) -->
+    <section id="katalog" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-bakery-600 font-bold tracking-wider text-xs uppercase block mb-2">Varian Kue Kering Kami</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-bakery-950">Katalog Favorit Misnawati</h2>
+                <div class="w-16 h-1 bg-bakery-500 mx-auto mt-4 rounded"></div>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-2 mb-10 overflow-x-auto pb-2 no-scrollbar">
+                <button onclick="filterCatalog('semua')" id="btn-cat-semua" class="px-5 py-2 rounded-full text-sm font-semibold transition-all shadow-sm bg-bakery-700 text-white">Semua</button>
+                <button onclick="filterCatalog('kombinasi')" id="btn-cat-kombinasi" class="px-5 py-2 rounded-full text-sm font-semibold transition-all shadow-sm bg-bakery-100 text-bakery-800 hover:bg-bakery-200">Kombinasi Baru</button>
+                <button onclick="filterCatalog('hias')" id="btn-cat-hias" class="px-5 py-2 rounded-full text-sm font-semibold transition-all shadow-sm bg-bakery-100 text-bakery-800 hover:bg-bakery-200">Custom/Kue Hias</button>
+                <button onclick="filterCatalog('hampers')" id="btn-cat-hampers" class="px-5 py-2 rounded-full text-sm font-semibold transition-all shadow-sm bg-bakery-100 text-bakery-800 hover:bg-bakery-200">Hampers & Kado</button>
+            </div>
+
+            <!-- Catalog Cards Grid -->
+            <div id="catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Product 1: Kue Nastar Premium -->
+<div class="product-card group bg-bakery-50 rounded-2xl overflow-hidden border border-bakery-200/60 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all" data-category="klasik">
+    <div class="relative h-52 overflow-hidden bg-bakery-200">
+        <img src="Kue nastar.jpg" alt="Nastar Premium" class="w-full h-full object-cover group-hover:scale-115 transition-transform duration-500">
+        <span class="absolute top-3 left-3 bg-bakery-800 text-white text-[10px] uppercase tracking-wider font-extrabold px-2.5 py-1 rounded-full shadow-sm">Favorit Ibu</span>
+    </div>
+    <div class="p-5 space-y-3">
+        <h3 class="font-serif font-bold text-lg text-bakery-950">Nastar Premium</h3>
+        <p class="text-xs text-gray-500 line-clamp-2">Lumer di mulut, manis di hati. Nastar premium dengan selai nanas segar buatan rumah.</p>
+        <div class="flex items-center justify-between pt-2">
+            <div>
+                <span class="block text-xs text-gray-400">Toples 500g</span>
+                <span class="font-bold text-bakery-700 text-base">Rp 50.000</span>
+            </div>
+            <button onclick="addToCart('Kue Nastar Premium Misnawawi', 50000, 'Kue nastar.jpg')" class="bg-bakery-600 hover:bg-bakery-700 text-white w-9 h-9 rounded-full flex items-center justify-center shadow transition-transform active:scale-95">
+                <i class="fa-solid fa-cart-plus"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+                <!-- Product 2: Produk Kue Kacang Sembunyi -->
+                <div class="product-card group bg-bakery-50 rounded-2xl overflow-hidden border border-bakery-200/60 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all" data-category="klasik">
+                    <div class="relative h-52 overflow-hidden bg-bakery-200">
+                        <img src="Kue Kacang Sembunyi.jpg" alt="Kastengel Keju Melimpah" class="w-full h-full object-cover group-hover:scale-115 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-bakery-800 text-white text-[10px] uppercase tracking-wider font-extrabold px-2.5 py-1 rounded-full shadow-sm">Gurih Garing</span>
+                    </div>
+                    <div class="p-5 space-y-3">
+                        <h3 class="font-serif font-bold text-lg text-bakery-950">Kacang Sembunyi Premium</h3>
+                        <p class="text-xs text-gray-500 line-clamp-2">Kriuk manis di luar, kejutan gurih di dalam. Sekali coba, sulit untuk berhenti.</p>
+                        <div class="flex items-center justify-between pt-2">
+                            <div>
+                                <span class="block text-xs text-gray-400">Toples 500g</span>
+                                <span class="font-bold text-bakery-700 text-base">Rp 50.000</span>
+                            </div>
+                            <button onclick="addToCart('Kacang Sembunyi Premium Misnawati', 50000, 'Kue Kacang Sembunyi.jpg')" class="bg-bakery-600 hover:bg-bakery-700 text-white w-9 h-9 rounded-full flex items-center justify-center shadow transition-transform active:scale-95">
+                                <i class="fa-solid fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3: Kue Putri Salju -->
+                <div class="product-card group bg-bakery-50 rounded-2xl overflow-hidden border border-bakery-200/60 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all" data-category="kombinasi">
+                    <div class="relative h-52 overflow-hidden bg-bakery-200">
+                        <img src="Kue Putri Salju.jpg" alt="Matcha Almond Cookies" class="w-full h-full object-cover group-hover:scale-115 transition-transform duration-500">
+                       </div>
+                    <div class="p-5 space-y-3">
+                        <h3 class="font-serif font-bold text-lg text-bakery-950">Kue Putri Salju Premium</h3>
+                        <p class="text-xs text-gray-500 line-clamp-2">Selembut salju, lumer di lidah. Nikmati sensasi manis dingin yang selalu bikin rindu.</p>
+                        <div class="flex items-center justify-between pt-2">
+                            <div>
+                                <span class="block text-xs text-gray-400">Toples 500g</span>
+                                <span class="font-bold text-bakery-700 text-base">Rp 50.000</span>
+                            </div>
+                            <button onclick="addToCart('Kue Putri Salju Premium Misnawati', 50000, 'Kue Putri Salju.jpg')" class="bg-bakery-600 hover:bg-bakery-700 text-white w-9 h-9 rounded-full flex items-center justify-center shadow transition-transform active:scale-95">
+                                <i class="fa-solid fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4: Kue Gula Palm  -->
+                <div class="product-card group bg-bakery-50 rounded-2xl overflow-hidden border border-bakery-200/60 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all" data-category="klasik">
+                    <div class="relative h-52 overflow-hidden bg-bakery-200">
+                        <img src="Kue Gula Palm.jpg" alt="Putri Salju Pandan" class="w-full h-full object-cover group-hover:scale-115 transition-transform duration-500">
+                    </div>
+                    <div class="p-5 space-y-3">
+                        <h3 class="font-serif font-bold text-lg text-bakery-950">Kue Gula Palm Premium</h3>
+                        <p class="text-xs text-gray-500 line-clamp-2">Perpaduan sempurna manis legitnya gula palm asli dan gurihnya keju premium yang bikin nagih.</p>
+                        <div class="flex items-center justify-between pt-2">
+                            <div>
+                                <span class="block text-xs text-gray-400">Toples 500g</span>
+                                <span class="font-bold text-bakery-700 text-base">Rp 50.000</span>
+                            </div>
+                            <button onclick="addToCart('Kue Gula Palm Premium Mi', 50000, 'Kue Gula Palm.jpg')" class="bg-bakery-600 hover:bg-bakery-700 text-white w-9 h-9 rounded-full flex items-center justify-center shadow transition-transform active:scale-95">
+                                <i class="fa-solid fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5: Kue Krispy Premium -->
+                <div class="product-card group bg-bakery-50 rounded-2xl overflow-hidden border border-bakery-200/60 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all" data-category="hias">
+                    <div class="relative h-52 overflow-hidden bg-bakery-200">
+                        <img src="Kue Krispi.jpg" alt="Cookies Hias Karakter" class="w-full h-full object-cover group-hover:scale-115 transition-transform duration-500">
+                          </div>
+                    <div class="p-5 space-y-3">
+                        <h3 class="font-serif font-bold text-lg text-bakery-950">Kue Krispy Premium</h3>
+                        <p class="text-xs text-gray-500 line-clamp-2">Tipisnya pas, renyah garingnya berkelas. Nikmati sensasi kriuk premium yang bikin tak bisa berhenti.</p>
+                        <div class="flex items-center justify-between pt-2">
+                            <div>
+                                <span class="block text-xs text-gray-400">Toples 500g</span>
+                                <span class="font-bold text-bakery-700 text-base">Rp 50.000</span>
+                            </div>
+                            <button onclick="addToCart('Kue Krispy Premium Misnawati', 50000, 'Kue Krispi.jpg')" class="bg-bakery-600 hover:bg-bakery-700 text-white w-9 h-9 rounded-full flex items-center justify-center shadow transition-transform active:scale-95">
+                                <i class="fa-solid fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6: Kue Cookies Coklat -->
+                <div class="product-card group bg-bakery-50 rounded-2xl overflow-hidden border border-bakery-200/60 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all" data-category="hampers">
+                    <div class="relative h-52 overflow-hidden bg-bakery-200">
+                        <img src="Kue Cookies Coklat.jfif" alt="Hampers Hari Raya" class="w-full h-full object-cover group-hover:scale-115 transition-transform duration-500">
+                            </div>
+                    <div class="p-5 space-y-3">
+                        <h3 class="font-serif font-bold text-lg text-bakery-950">Kue Coklat Premium</h3>
+                        <p class="text-xs text-gray-500 line-clamp-2">Renyah di luar, lembut di dalam. Manisnya pas, cokelatnya bikin candu</p>
+                        <div class="flex items-center justify-between pt-2">
+                            <div>
+                                <span class="block text-xs text-gray-400">Toples 500g</span>
+                                <span class="font-bold text-bakery-700 text-base">Rp 50.000</span>
+                            </div>
+                            <button onclick="addToCart('Kue Coklat Premium Misnawati', 50000, 'Kue Cookies Coklat.jfif')" class="bg-bakery-600 hover:bg-bakery-700 text-white w-9 h-9 rounded-full flex items-center justify-center shadow transition-transform active:scale-95">
+                                <i class="fa-solid fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 7: Kue Lidah Premium Misnawati -->
+                <div class="product-card group bg-bakery-50 rounded-2xl overflow-hidden border border-bakery-200/60 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all" data-category="kombinasi">
+                    <div class="relative h-52 overflow-hidden bg-bakery-200">
+                        <img src="Kue Lidah Kucing.jfif" alt="Almond Crispy Cheese" class="w-full h-full object-cover group-hover:scale-115 transition-transform duration-500">
+                    </div>
+                    <div class="p-5 space-y-3">
+                        <h3 class="font-serif font-bold text-lg text-bakery-950">Kue Lidah Kucing Premium</h3>
+                        <p class="text-xs text-gray-500 line-clamp-2">Setipis kertas, serenyah impian. Nikmati sensasi lumer mentega premium di setiap gigitan.</p>
+                        <div class="flex items-center justify-between pt-2">
+                            <div>
+                                <span class="block text-xs text-gray-400">Toples 500g</span>
+                                <span class="font-bold text-bakery-700 text-base">Rp 50.000</span>
+                            </div>
+                            <button onclick="addToCart('Kue Lidah Kucing Premium Misnawati', 50000, 'Kue Lidah Kucing.jfif')" class="bg-bakery-600 hover:bg-bakery-700 text-white w-9 h-9 rounded-full flex items-center justify-center shadow transition-transform active:scale-95">
+                                <i class="fa-solid fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 8: Cookies Logo Kantor -->
+                <div class="product-card group bg-bakery-50 rounded-2xl overflow-hidden border border-bakery-200/60 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all" data-category="hias">
+                    <div class="relative h-52 overflow-hidden bg-bakery-200">
+                        <img src="Kue Mama 02.jfif" alt="Cookies Kustom Corporate" class="w-full h-full object-cover group-hover:scale-115 transition-transform duration-500">
+                            </div>
+                    <div class="p-5 space-y-3">
+                        <h3 class="font-serif font-bold text-lg text-bakery-950">Kue Selai Premium</h3>
+                        <p class="text-xs text-gray-500 line-clamp-2">Gurih kuenya pas, segarnya selai buah asli langsung meleleh di setiap gigitan.</p>
+                        <div class="flex items-center justify-between pt-2">
+                            <div>
+                                <span class="block text-xs text-gray-400">Toples 500g</span>
+                                <span class="font-bold text-bakery-700 text-base">Rp 50.000<span class="text-xs text-gray-400 font-normal"> /pcs</span></span>
+                            </div>
+                            <button onclick="addToCart('Kue Selai Premium', 50000, 'Kue Mama 02.jfif')" class="bg-bakery-600 hover:bg-bakery-700 text-white w-9 h-9 rounded-full flex items-center justify-center shadow transition-transform active:scale-95">
+                                <i class="fa-solid fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+<!-- Product 9: Kue Nastar Cip Premium Misnawati -->
+                <div class="product-card group bg-bakery-50 rounded-2xl overflow-hidden border border-bakery-200/60 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all" data-category="klasik">
+                    <div class="relative h-52 overflow-hidden bg-bakery-200">
+                        <img src="Kue Mama 03.jfif" alt="Kue Nastar Cip Premium Misnawati" class="w-full h-full object-cover group-hover:scale-115 transition-transform duration-500">
+                    </div>
+                    <div class="p-5 space-y-3">
+                        <h3 class="font-serif font-bold text-lg text-bakery-950">Kue Nastar Cip Premium</h3>
+                        <p class="text-xs text-gray-500 line-clamp-2">Nastar Cip mungil dengan selai nanas melimpah. Sekali hap, langsung lumer tanpa repot.</p>
+                        <div class="flex items-center justify-between pt-2">
+                            <div>
+                                <span class="block text-xs text-gray-400">Toples 500g</span>
+                                <span class="font-bold text-bakery-700 text-base">Rp 50.000</span>
+                            </div>
+                            <button onclick="addToCart('Kue Nastar Cip Premium Misnawati', 50000, 'Kue Mama 03.jfif')" class="bg-bakery-600 hover:bg-bakery-700 text-white w-9 h-9 rounded-full flex items-center justify-center shadow transition-transform active:scale-95">
+                                <i class="fa-solid fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 10: Kue Love Premium -->
+                <div class="product-card group bg-bakery-50 rounded-2xl overflow-hidden border border-bakery-200/60 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all" data-category="klasik">
+                    <div class="relative h-52 overflow-hidden bg-bakery-200">
+                        <img src="Kue LOve.jfif" alt="Kue Love Premium" class="w-full h-full object-cover group-hover:scale-115 transition-transform duration-500">
+                    </div>
+                    <div class="p-5 space-y-3">
+                        <h3 class="font-serif font-bold text-lg text-bakery-950">Kue Love Premium</h3>
+                        <p class="text-xs text-gray-500 line-clamp-2">Ungkapkan rasa dengan kelembutan. Kue Love Premium, lumer di mulut, manis di hati.</p>
+                        <div class="flex items-center justify-between pt-2">
+                            <div>
+                                <span class="block text-xs text-gray-400">Toples 500g</span>
+                                <span class="font-bold text-bakery-700 text-base">Rp 50.000</span>
+                            </div>
+                            <button onclick="addToCart('Kue Love Premium Misnawati', 50000, 'Kue LOve.jfif')" class="bg-bakery-600 hover:bg-bakery-700 text-white w-9 h-9 rounded-full flex items-center justify-center shadow transition-transform active:scale-95">
+                                <i class="fa-solid fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Design & Hampers Booking Section -->
+    <section id="kustom" class="py-16 bg-bakery-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-bakery-200">
+                <div class="text-center max-w-xl mx-auto mb-8">
+                    <span class="inline-block px-3 py-1 bg-bakery-100 text-bakery-800 text-xs font-bold rounded-full uppercase mb-2">Pre-Order Mudah</span>
+                    <h2 class="font-serif text-3xl font-bold text-bakery-950">Formulir Pesanan Kustom & Hampers</h2>
+                    <p class="text-xs text-gray-500 mt-2">Punya ide kustom sendiri? Beritahu kami kebutuhan kue impian Anda.</p>
+                </div>
+
+                <form id="custom-request-form" class="space-y-6">
+                    <!-- Target/Jenis Layanan -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Tipe Pemesanan</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <label class="flex items-center gap-3 p-4 rounded-xl border-2 border-bakery-200 hover:border-bakery-500 cursor-pointer transition-all">
+                                <input type="radio" name="order_type" value="Keluarga/Acara Pribadi" checked class="text-bakery-600 focus:ring-bakery-500">
+                                <div>
+                                    <span class="block text-sm font-bold text-bakery-900">Ibu & Keluarga</span>
+                                    <span class="block text-xs text-gray-500">Acara keluarga, arisan, ultah anak</span>
+                                </div>
+                            </label>
+                            <label class="flex items-center gap-3 p-4 rounded-xl border-2 border-bakery-200 hover:border-bakery-500 cursor-pointer transition-all">
+                                <input type="radio" name="order_type" value="Kantor/Bisnis/Hampers" class="text-bakery-600 focus:ring-bakery-500">
+                                <div>
+                                    <span class="block text-sm font-bold text-bakery-900">Kantor & Bisnis</span>
+                                    <span class="block text-xs text-gray-500">Hampers, rapat korporat, souvenir logo</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Detail Kue & Desain -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label for="cookie_base" class="block text-sm font-semibold text-gray-700 mb-2">Pilih Varian Kue</label>
+                            <select id="cookie_base" required class="w-full px-4 py-3 rounded-xl border border-bakery-200 focus:border-bakery-500 focus:ring focus:ring-bakery-200/50 bg-white">
+                                <option value="" disabled selected>Pilih kue...</option>
+                                <option value="Nastar Premium"> Kue Nastar Premium</option>
+                                <option value="Kacang Sembunyi Premium">Kacang Sembunyi Premium</option>
+                                <option value="Kue Putri Salju Premium">Kue Putri Salju Premium</option>
+                                <option value="Kue Gula Palm Premium">Kue Gula Palm Premium</option>
+                                <option value="Kue Krispy Premium">Kue Krispy Premium</option>
+                                <option value="Kue Coklat Premium">Kue Coklat Premium</option>
+                                <option value="Kue Lidah Kucing Premium">Kue Lidah Kucing Premium</option>
+                                <option value="Kue Nastar Cip Premium">Kue Nastar Cip Premium</option>
+                                <option value="Kue Love Premium">Kue Love Premium</option>
+                                <option value="Hampers Multi Varian">Hampers Box Multi Varian</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="order_qty" class="block text-sm font-semibold text-gray-700 mb-2">Jumlah Pesanan (Toples/Box)</label>
+                            <input type="number" id="order_qty" min="1" placeholder="Contoh: 5" required class="w-full px-4 py-3 rounded-xl border border-bakery-200 focus:border-bakery-500 focus:ring focus:ring-bakery-200/50">
+                        </div>
+                    </div>
+
+                    <!-- Custom Request Details -->
+                    <div>
+                        <label for="custom_desc" class="block text-sm font-semibold text-gray-700 mb-2">Deskripsi Desain & Permintaan Khusus</label>
+                        <textarea id="custom_desc" rows="4"  class="w-full px-4 py-3 rounded-xl border border-bakery-200 focus:border-bakery-500 focus:ring focus:ring-bakery-200/50"></textarea>
+                    </div>
+
+                    <!-- Delivery Date Picker & Packing option -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label for="delivery_date" class="block text-sm font-semibold text-gray-700 mb-2">Tanggal Pengiriman Diinginkan</label>
+                            <input type="date" id="delivery_date" required class="w-full px-4 py-3 rounded-xl border border-bakery-200 focus:border-bakery-500 focus:ring focus:ring-bakery-200/50 bg-white">
+                            <span class="text-[10px] text-gray-400 block mt-1">Sistem Pre-order membutuhkan min. 3 hari proses pembuatan higienis.</span>
+                        </div>
+                        <div>
+                            <label for="shipping_method" class="block text-sm font-semibold text-gray-700 mb-2">Metode Pengiriman</label>
+                            <select id="shipping_method" required class="w-full px-4 py-3 rounded-xl border border-bakery-200 focus:border-bakery-500 focus:ring focus:ring-bakery-200/50 bg-white">
+                                <option value="Instan/Sameday" selected>Kurir Instan / Sameday (Direkomendasikan)</option>
+                                <option value="Ekspedisi Reguler">Ekspedisi Reguler (Kirim Luar Kota + Double Bubble Wrap)</option>
+                                <option value="Ambil Sendiri">Ambil Sendiri ke Dapur Misnawati (Self-Pickup)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- CTA Button -->
+                    <button type="submit" class="w-full py-4 bg-bakery-700 hover:bg-bakery-800 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 text-base">
+                        <i class="fa-brands fa-whatsapp text-xl"></i> Kirim Form Kustom ke WhatsApp Kami
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="tentang" class="py-16 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Text Right -->
+                <div class="lg:col-span-7 space-y-6">
+                    <span class="text-bakery-600 font-bold tracking-wider text-xs uppercase block">Dapur Bersih, Rasa Premium</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-bakery-950">Kisah Dibalik Setiap Loyang Kue Kering Misnawati</h2>
+                    <div class="w-16 h-1 bg-bakery-500 rounded"></div>
+                    <p class="text-gray-650 leading-relaxed text-sm sm:text-base">
+                        Dari Dapur Hangat Ibu Misnawati, Lahir Kemurnian Rasa untuk Indonesia
+                        Berawal dari kecintaan Ibu Misnawati dalam menyajikan kue kering manis nan sehat untuk putra-putrinya di rumah tanpa khawatir zat kimia pengawet. Kelezatan kue kering racikan khas keluarga ini akhirnya menyebar dari mulut ke mulut, hingga berkembang pesat melayani ribuan pesanan keluarga besar dan korporat di Indonesia.
+                    </p>
+                    <p class="text-gray-650 leading-relaxed text-sm sm:text-base">
+                        Komitmen kami tetap sama sejak hari pertama: Hanya menggunakan bahan baku premium asli, tanpa campuran pengawet setetes pun, dan memproduksi secara higienis dalam kondisi segar di setiap pesanan. Kami percaya bahwa kue kering terbaik bukan sekadar soal manisnya gula, melainkan rasa hangat kebersamaan keluarga yang dihadirkannya.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6 pt-4 border-t border-bakery-100">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-bakery-100 flex items-center justify-center text-bakery-700">
+                                <i class="fa-solid fa-clock-rotate-left"></i>
+                            </div>
+                            <div>
+                                <span class="block font-bold text-bakery-900 text-sm">Made to Order</span>
+                                <span class="text-xs text-gray-500">Selalu baru & fresh</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-bakery-100 flex items-center justify-center text-bakery-700">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <div>
+                                <span class="block font-bold text-bakery-900 text-sm">Higienis & Halal</span>
+                                <span class="text-xs text-gray-500">Dapur super bersih</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-bakery-100/50 border-t border-bakery-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-bakery-600 font-bold tracking-wider text-xs uppercase block mb-2">Testimoni Jujur</span>
+                <h2 class="font-serif text-3xl font-bold text-bakery-950">Apa Kata Mereka?</h2>
+                <div class="w-16 h-1 bg-bakery-500 mx-auto mt-4 rounded"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testi 1 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-bakery-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-500 gap-1 mb-4">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-650 italic text-sm leading-relaxed mb-6">
+                            "Sebagai ibu rumah tangga, saya sangat selektif memilih camilan untuk anak-anak dan suami, apalagi saat momen Lebaran. Pas coba kue kering di sini, langsung kelihatan kalau kualitasnya premium. Teksturnya pas, higienis, dan yang paling penting tanpa bahan pengawet. Rasa manisnya pas dan margarinnya terasa sekali di setiap gigitan. Kue nastar dan kastengelnya langsung jadi rebutan di rumah"
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-bakery-100">
+                        <div class="w-10 h-10 rounded-full bg-bakery-200 overflow-hidden flex items-center justify-center text-bakery-700 font-bold">
+                            IB
+                        </div>
+                        <div>
+                            <span class="block font-bold text-bakery-900 text-sm">Ibu Ratna</span>
+                            <span class="text-[10px] text-gray-500">Ibu Rumah Tangga - Bekasi</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testi 2 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-bakery-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-500 gap-1 mb-4">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-650 italic text-sm leading-relaxed mb-6">
+                            "Awalnya saya mencari kue kering untuk kebutuhan hampers akhir tahun dan bingkisan Hari Raya bagi para mitra perusahaan. Setelah mencoba sampelnya, rasanya benar-benar berkelas dan tidak mengecewakan. Kemasannya sangat elegan dan profesional, mencerminkan citra premium. Semua kolega bisnis yang menerima memberikan respon positif. Sangat direkomendasikan untuk konsumsi pribadi maupun kebutuhan korporat"
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-bakery-100">
+                        <div class="w-10 h-10 rounded-full bg-bakery-200 overflow-hidden flex items-center justify-center text-bakery-700 font-bold">
+                            HR
+                        </div>
+                        <div>
+                            <span class="block font-bold text-bakery-900 text-sm">Bapak Randy</span>
+                            <span class="text-[10px] text-gray-500">Admin General Affairs - Jakarta</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testi 3 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-bakery-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-500 gap-1 mb-4">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-650 italic text-sm leading-relaxed mb-6">
+                            "Jujur, awalnya iseng beli cookies-nya buat camilan sambil ngerjain tugas kuliah di kosan. Tapi pas dicoba, beneran langsung jatuh cinta! Rasanya modern banget, gak bikin enek, dan cokelatnya melimpah. Meskipun judulnya kue kering premium buatan rumahan, tapi dari segi rasa dan look-nya estetik banget khas Gen Z. Pas Lebaran kemarin bawa pulang ke kampung halaman, langsung habis dalam sehari diserbu saudara"
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-bakery-100">
+                        <div class="w-10 h-10 rounded-full bg-bakery-200 overflow-hidden flex items-center justify-center text-bakery-700 font-bold">
+                            AN
+                        </div>
+                        <div>
+                            <span class="block font-bold text-bakery-900 text-sm">Anisa</span>
+                            <span class="text-[10px] text-gray-500">Mahasiswi - Tangerang</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-bakery-600 font-bold tracking-wider text-xs uppercase block mb-2">Paling Sering Ditanyakan</span>
+                <h2 class="font-serif text-3xl font-bold text-bakery-950">Pertanyaan Umum (FAQ)</h2>
+                <div class="w-16 h-1 bg-bakery-500 mx-auto mt-4 rounded"></div>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="border border-bakery-200 rounded-2xl overflow-hidden transition-all">
+                    <button onclick="toggleFaq(1)" class="w-full px-6 py-4 bg-bakery-50 hover:bg-bakery-100 flex items-center justify-between text-left focus:outline-none">
+                        <span class="font-semibold text-bakery-950">Berapa lama daya tahan kue kering Misnawati karena tanpa pengawet?</span>
+                        <i id="faq-icon-1" class="fa-solid fa-chevron-down text-bakery-600 transition-transform"></i>
+                    </button>
+                    <div id="faq-answer-1" class="hidden px-6 py-4 border-t border-bakery-200 bg-white text-sm text-gray-650 leading-relaxed">
+                        Meskipun tanpa pengawet kimia, kue kering kami dipanggang hingga kadar air minimal dan dikemas secara vakum kedap udara. Sehingga kue tahan hingga **3 bulan** pada suhu ruangan dalam kondisi toples tertutup rapat (belum dibuka segelnya).
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="border border-bakery-200 rounded-2xl overflow-hidden transition-all">
+                    <button onclick="toggleFaq(2)" class="w-full px-6 py-4 bg-bakery-50 hover:bg-bakery-100 flex items-center justify-between text-left focus:outline-none">
+                        <span class="font-semibold text-bakery-950">Berapa minimal hari pemesanan sebelum hari H pengiriman?</span>
+                        <i id="faq-icon-2" class="fa-solid fa-chevron-down text-bakery-600 transition-transform"></i>
+                    </button>
+                    <div id="faq-answer-2" class="hidden px-6 py-4 border-t border-bakery-200 bg-white text-sm text-gray-650 leading-relaxed">
+                        Untuk menu reguler siap kirim (ready stock) pesanan dikirim H+1. Namun untuk **kue hias kustom, cookies karakter, maupun hampers korporat dalam jumlah besar, minimal pre-order adalah 3 hingga 7 hari** sebelum rencana tanggal pengiriman.
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="border border-bakery-200 rounded-2xl overflow-hidden transition-all">
+                    <button onclick="toggleFaq(3)" class="w-full px-6 py-4 bg-bakery-50 hover:bg-bakery-100 flex items-center justify-between text-left focus:outline-none">
+                        <span class="font-semibold text-bakery-950">Apakah aman untuk pengiriman ke luar kota?</span>
+                        <i id="faq-icon-3" class="fa-solid fa-chevron-down text-bakery-600 transition-transform"></i>
+                    </button>
+                    <div id="faq-answer-3" class="hidden px-6 py-4 border-t border-bakery-200 bg-white text-sm text-gray-650 leading-relaxed">
+                        Sangat aman! Kami membungkus toples dengan **double bubble wrap** secara tebal serta menambahkan boks pelindung kokoh secara gratis tanpa biaya tambahan untuk setiap pesanan luar kota menggunakan ekspedisi reguler.
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="border border-bakery-200 rounded-2xl overflow-hidden transition-all">
+                    <button onclick="toggleFaq(4)" class="w-full px-6 py-4 bg-bakery-50 hover:bg-bakery-100 flex items-center justify-between text-left focus:outline-none">
+                        <span class="font-semibold text-bakery-950">Apakah melayani metode transfer bank & menerbitkan kuitansi resmi?</span>
+                        <i id="faq-icon-4" class="fa-solid fa-chevron-down text-bakery-600 transition-transform"></i>
+                    </button>
+                    <div id="faq-answer-4" class="hidden px-6 py-4 border-t border-bakery-200 bg-white text-sm text-gray-650 leading-relaxed">
+                        Tentu! Kami melayani transfer via seluruh bank utama di Indonesia dan dapat menerbitkan invoice resmi lengkap dengan cap basah dapur produksi Misnawati untuk mempermudah administrasi pelaporan kantor Anda.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar Drawer -->
+    <div id="cart-drawer" class="fixed inset-y-0 right-0 max-w-full flex pl-10 z-50 transform translate-x-full transition-transform duration-300 ease-in-out">
+        <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col">
+            <!-- Header -->
+            <div class="px-6 py-5 bg-bakery-100 border-b border-bakery-200 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-cart-shopping text-bakery-700 text-lg"></i>
+                    <h2 class="text-lg font-bold text-bakery-950">Keranjang Belanja</h2>
+                </div>
+                <button onclick="toggleCart()" class="text-gray-500 hover:text-gray-800 focus:outline-none">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Items List -->
+            <div class="flex-1 overflow-y-auto p-6 space-y-4" id="cart-items-container">
+                <!-- Fallback empty state -->
+                <div id="empty-cart-state" class="text-center py-20 space-y-4">
+                    <span class="text-5xl">🛒</span>
+                    <p class="text-gray-400 text-sm">Keranjang Anda masih kosong.</p>
+                </div>
+            </div>
+
+            <!-- Total Price & Checkout -->
+            <div class="p-6 bg-bakery-50 border-t border-bakery-200 space-y-4">
+                <div class="flex items-center justify-between font-semibold text-base text-bakery-950">
+                    <span>Subtotal:</span>
+                    <span id="cart-total-price">Rp 0</span>
+                </div>
+                
+                <!-- Datepicker inside Cart Drawer -->
+                <div>
+                    <label for="cart_delivery_date" class="block text-xs font-semibold text-gray-500 mb-1">Pilih Tanggal Pengantaran:</label>
+                    <input type="date" id="cart_delivery_date" class="w-full text-xs px-3 py-2 rounded-lg border border-bakery-200 focus:ring-1 focus:ring-bakery-500 bg-white">
+                </div>
+
+                <button onclick="checkoutToWhatsApp()" class="w-full py-3.5 bg-bakery-700 hover:bg-bakery-800 text-white font-bold rounded-xl shadow transition-colors flex items-center justify-center gap-2 text-sm">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Kirim Order ke WhatsApp
+                </button>
+                <p class="text-[10px] text-gray-400 text-center">Pesanan Anda akan dikonversi menjadi format pesan chat instan untuk konsultasi pengiriman langsung.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Backdrop overlay for Cart -->
+    <div id="drawer-overlay" onclick="toggleCart()" class="fixed inset-0 bg-black/40 z-40 hidden transition-opacity duration-300"></div>
+
+    <!-- Custom Notification Toast -->
+    <div id="toast-notif" class="fixed bottom-5 left-5 right-5 sm:left-auto sm:right-5 bg-bakery-900 text-white px-6 py-4 rounded-xl shadow-lg flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 z-50">
+        <i class="fa-solid fa-circle-check text-green-400 text-lg"></i>
+        <span id="toast-message" class="text-sm font-medium">Kue berhasil ditambahkan ke keranjang!</span>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-bakery-950 text-white pt-16 pb-8 border-t border-bakery-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <!-- Brand Info -->
+               <div class="flex-shrink-0 flex items-center gap-2">
+                    <div class="w-10 h-10 rounded-full bg-bakery-600 flex items-center justify-center text-white shadow-md">
+                        <img src="Kue Logo.jpg" alt="Logo Kue" class="w-full h-full object-contain">
+                    </div>
+                        <div>
+                        <span class="font-serif font-bold text-xl tracking-wide block leading-tight text-gray-900">Misnawati</span>
+                        <span class="text-[10px] tracking-widest text-bakery-400 uppercase font-semibold block">Premium Cookies</span>
+                    </div>
+                </div>
+                <p class="text-xs text-gray-900 leading-relaxed">
+                    Penyedia kue kering premium asli buatan rumahan higienis tanpa tambahan bahan pengawet. Menggunakan margarin pilihan untuk rasa berkelas di setiap gigitan.
+                </p>
+                    <div class="flex space-x-4 pt-2">
+                        <a href="https://www.instagram.com/nurainiputrimahlan/" class="w-8 h-8 rounded-full bg-bakery-900 hover:bg-bakery-700 flex items-center justify-center transition-colors text-white"><i class="fa-brands fa-instagram text-sm"></i></a>
+                        <a href="https://web.facebook.com/nurainimahlan.mahlan" class="w-8 h-8 rounded-full bg-bakery-900 hover:bg-bakery-700 flex items-center justify-center transition-colors text-white"><i class="fa-brands fa-facebook text-sm"></i></a>
+                        <a href="https://www.tiktok.com/@nurainiputrimahlan" class="w-8 h-8 rounded-full bg-bakery-900 hover:bg-bakery-700 flex items-center justify-center transition-colors text-white"><i class="fa-brands fa-tiktok text-sm"></i></a>
+                    </div>
+                </div>
+
+                <!-- Fast Navigation -->
+                <div>
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-bakery-400 mb-4">Navigasi Cepat</h4>
+                        <ul class="space-y-2 text-sm text-gray-900">
+                         <li><a href="#beranda" class="hover:text-bakery-500 transition-colors">Homepage</a></li>
+                      <li><a href="#keunggulan" class="hover:text-bakery-500 transition-colors">USP Keunggulan</a></li>
+                    <li><a href="#katalog" class="hover:text-bakery-500 transition-colors">Katalog Menu</a></li>
+                     <li><a href="#kustom" class="hover:text-bakery-500 transition-colors">Request Custom</a></li>
+                    <li><a href="#tentang" class="hover:text-bakery-500 transition-colors">Tentang Dapur Kami</a></li>
+                  </ul>
+                </div>
+
+                <!-- Operational & Contact -->
+                <div>
+                <h4 class="text-sm font-bold uppercase tracking-wider text-bakery-700 mb-4">Jam Operasional & Kontak</h4>
+                          <ul class="space-y-2 text-sm text-gray-800 font-medium">
+                 <li><i class="fa-solid fa-clock mr-2 text-bakery-600"></i> Setiap Hari: 08.00 - 18.00 WITA</li>
+                <li><i class="fa-solid fa-location-dot mr-2 text-bakery-600"></i> Dapur Produksi: Kutai Barat, Kalimantan Timur</li>
+                 <li><i class="fa-solid fa-envelope mr-2 text-bakery-600"></i> mmange022@gmail.com</li> <!-- Bonus: Memperbaiki typo .com.com -->
+                 <li><i class="fa-solid fa-phone mr-2 text-bakery-600"></i> +62 823-5317-0024</li>
+                </ul>
+                </div>
+
+                <!-- Google Maps Embed Simulation -->
+                <div>
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-bakery-400 mb-4">Lokasi Dapur Kami</h4>
+                    <div class="rounded-xl overflow-hidden shadow h-36 bg-bakery-900 relative">
+                        <div class="absolute inset-0 bg-cover bg-center opacity-70" style="background-image: url('https://placehold.co/400x200/443322/ffffff?text=Peta+Lokasi+Dapur+Misnawati')"></div>
+                        <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
+                            <a href="https://maps.app.goo.gl/yTiRHVXiLrKAf2ST9" target="_blank" class="px-4 py-2 bg-bakery-700 hover:bg-bakery-800 text-white text-xs font-bold rounded-lg shadow-md transition-colors">
+                                <i class="fa-solid fa-map-location-dot mr-1"></i> Buka Google Maps
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Credits -->
+            <div class="pt-8 border-t border-bakery-900 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500">
+                <p>&copy; 2026 Kue Kering Misnawati. Seluruh Hak Cipta Dilindungi.</p>
+                <p class="mt-2 sm:mt-0 flex gap-4">
+                    <a href="#" class="hover:text-white">Kebijakan Privasi</a>
+                    <a href="#" class="hover:text-white">Syarat Ketentuan</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- State Management ---
+        let cart = [];
+        const waNumber = "6282353170024"; // Ganti dengan nomor WhatsApp asli UMKM
+
+        // --- Window Onload ---
+        window.onload = function() {
+            // Set min date for datepicker (H+3 from today as PO requirement)
+            const today = new Date();
+            today.setDate(today.getDate() + 3);
+            const minDate = today.toISOString().split('T')[0];
+            
+            const customDateInput = document.getElementById('delivery_date');
+            const cartDateInput = document.getElementById('cart_delivery_date');
+            if (customDateInput) customDateInput.min = minDate;
+            if (cartDateInput) cartDateInput.min = minDate;
+        };
+
+        // --- Mobile Menu Drawer ---
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.className = "fa-solid fa-xmark text-2xl";
+            } else {
+                menu.classList.add('hidden');
+                icon.className = "fa-solid fa-bars text-2xl";
+            }
+        }
+
+        // --- Target Market Tab Switcher ---
+        function switchMarket(target) {
+            const btnKeluarga = document.getElementById('tab-keluarga');
+            const btnKantor = document.getElementById('tab-kantor');
+            const contentKeluarga = document.getElementById('content-keluarga');
+            const contentKantor = document.getElementById('content-kantor');
+
+            if (target === 'keluarga') {
+                btnKeluarga.className = "px-6 py-2.5 rounded-full text-sm font-bold transition-all bg-bakery-700 text-white";
+                btnKantor.className = "px-6 py-2.5 rounded-full text-sm font-bold transition-all text-bakery-900 hover:text-bakery-700";
+                contentKeluarga.classList.remove('hidden');
+                contentKantor.classList.add('hidden');
+            } else {
+                btnKeluarga.className = "px-6 py-2.5 rounded-full text-sm font-bold transition-all text-bakery-900 hover:text-bakery-700";
+                btnKantor.className = "px-6 py-2.5 rounded-full text-sm font-bold transition-all bg-bakery-700 text-white";
+                contentKeluarga.classList.add('hidden');
+                contentKantor.classList.remove('hidden');
+            }
+        }
+
+        // --- Catalog Filtering ---
+        function filterCatalog(category) {
+            const cards = document.querySelectorAll('.product-card');
+            const buttons = [
+                { id: 'btn-cat-semua', cat: 'semua' },
+                { id: 'btn-cat-klasik', cat: 'klasik' },
+                { id: 'btn-cat-kombinasi', cat: 'kombinasi' },
+                { id: 'btn-cat-hias', cat: 'hias' },
+                { id: 'btn-cat-hampers', cat: 'hampers' }
+            ];
+
+            // Toggle active styles on buttons
+            buttons.forEach(btnObj => {
+                const element = document.getElementById(btnObj.id);
+                if (btnObj.cat === category) {
+                    element.className = "px-5 py-2 rounded-full text-sm font-semibold transition-all shadow-sm bg-bakery-700 text-white";
+                } else {
+                    element.className = "px-5 py-2 rounded-full text-sm font-semibold transition-all shadow-sm bg-bakery-100 text-bakery-800 hover:bg-bakery-200";
+                }
+            });
+
+            // Filter cards
+            cards.forEach(card => {
+                const cardCat = card.getAttribute('data-category');
+                if (category === 'semua' || cardCat === category) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        // --- Custom FAQ Accordion ---
+        function toggleFaq(index) {
+            const answer = document.getElementById(`faq-answer-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+            if (answer.classList.contains('hidden')) {
+                answer.classList.remove('hidden');
+                icon.style.transform = "rotate(180deg)";
+            } else {
+                answer.classList.add('hidden');
+                icon.style.transform = "rotate(0deg)";
+            }
+        }
+
+        // --- Cart Operations ---
+        function toggleCart() {
+            const drawer = document.getElementById('cart-drawer');
+            const overlay = document.getElementById('drawer-overlay');
+            if (drawer.classList.contains('translate-x-full')) {
+                drawer.classList.remove('translate-x-full');
+                overlay.classList.remove('hidden');
+            } else {
+                drawer.classList.add('translate-x-full');
+                overlay.classList.add('hidden');
+            }
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast-notif');
+            const msgEl = document.getElementById('toast-message');
+            msgEl.innerText = message;
+            toast.classList.remove('opacity-0', 'translate-y-20');
+            toast.classList.add('opacity-100', 'translate-y-0');
+            
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-20');
+            }, 3000);
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cart-items-container');
+            const countBadge = document.getElementById('cart-count');
+            const countBadgeMobile = document.getElementById('cart-count-mobile');
+            const totalPriceEl = document.getElementById('cart-total-price');
+            const emptyState = document.getElementById('empty-cart-state');
+
+            // Clear dynamic elements
+            const existingItems = container.querySelectorAll('.dynamic-cart-item');
+            existingItems.forEach(item => item.remove());
+
+            if (cart.length === 0) {
+                emptyState.classList.remove('hidden');
+                countBadge.classList.add('hidden');
+                countBadgeMobile.classList.add('hidden');
+                totalPriceEl.innerText = "Rp 0";
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            countBadge.classList.remove('hidden');
+            countBadgeMobile.classList.remove('hidden');
+
+            let totalQty = 0;
+            let totalPrice = 0;
+
+            cart.forEach((item, index) => {
+                totalQty += item.qty;
+                totalPrice += item.price * item.qty;
+
+                const itemDiv = document.createElement('div');
+                itemDiv.className = "dynamic-cart-item flex items-center justify-between gap-4 p-3 bg-bakery-50 border border-bakery-200 rounded-xl";
+                itemDiv.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <img src="${item.img}" class="w-12 h-12 object-cover rounded-lg bg-bakery-200" alt="${item.name}">
+                        <div>
+                            <span class="block text-sm font-bold text-bakery-950">${item.name}</span>
+                            <span class="block text-xs text-bakery-600">Rp ${item.price.toLocaleString('id-ID')}</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="changeQty(${index}, -1)" class="w-6 h-6 rounded bg-bakery-200 hover:bg-bakery-300 flex items-center justify-center text-xs font-bold">-</button>
+                        <span class="text-xs font-semibold w-5 text-center">${item.qty}</span>
+                        <button onclick="changeQty(${index}, 1)" class="w-6 h-6 rounded bg-bakery-200 hover:bg-bakery-300 flex items-center justify-center text-xs font-bold">+</button>
+                    </div>
+                `;
+                container.appendChild(itemDiv);
+            });
+
+            countBadge.innerText = totalQty;
+            countBadgeMobile.innerText = totalQty;
+            totalPriceEl.innerText = `Rp ${totalPrice.toLocaleString('id-ID')}`;
+        }
+
+        function addToCart(name, price, img) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({ name, price, img, qty: 1 });
+            }
+            updateCartUI();
+            showToast(`🎂 ${name} ditambahkan ke keranjang!`);
+        }
+
+        function changeQty(index, change) {
+            cart[index].qty += change;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        // --- Checkout & WhatsApp Link Generators ---
+        function checkoutToWhatsApp() {
+            if (cart.length === 0) {
+                showToast("⚠️ Keranjang belanja Anda kosong.");
+                return;
+            }
+
+            const cartDate = document.getElementById('cart_delivery_date').value;
+            if (!cartDate) {
+                showToast("📅 Mohon tentukan tanggal pengiriman.");
+                return;
+            }
+
+            let message = `Halo Dapur Kue Kering Misnawati, saya ingin memesan kue kering premium berikut:\n\n`;
+            let total = 0;
+
+            cart.forEach(item => {
+                const subTotal = item.price * item.qty;
+                message += `- *${item.name}* (x${item.qty}) = Rp ${subTotal.toLocaleString('id-ID')}\n`;
+                total += subTotal;
+            });
+
+            message += `\n*Total Belanja:* Rp ${total.toLocaleString('id-ID')}`;
+            message += `\n*Tanggal Pengantaran:* ${cartDate}`;
+            message += `\n\n_Mohon segera konfirmasi pesanan dan rincian ongkos kirimnya ya. Terima kasih!_`;
+
+            const encodedMsg = encodeURIComponent(message);
+            window.open(`https://wa.me/${waNumber}?text=${encodedMsg}`, '_blank');
+        }
+
+        // --- Custom Design Form Submit Listener ---
+        document.getElementById('custom-request-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const orderType = document.querySelector('input[name="order_type"]:checked').value;
+            const cookieBase = document.getElementById('cookie_base').value;
+            const orderQty = document.getElementById('order_qty').value;
+            const customDesc = document.getElementById('custom_desc').value;
+            const deliveryDate = document.getElementById('delivery_date').value;
+            const shippingMethod = document.getElementById('shipping_method').value;
+
+            let message = `*PRE-ORDER / CUSTOM DESIGN FORM (KUE MISNAWATI)*\n`;
+            message += `-----------------------------------------\n`;
+            message += `*Segmentasi:* ${orderType}\n`;
+            message += `*Varian Kue:* ${cookieBase}\n`;
+            message += `*Jumlah:* ${orderQty} pcs/toples/boks\n`;
+            message += `*Tanggal Kirim:* ${deliveryDate}\n`;
+            message += `*Metode Pengiriman:* ${shippingMethod}\n`;
+            message += `*Deskripsi Request Desain:*\n"${customDesc || '-'}"\n`;
+            message += `-----------------------------------------\n`;
+            message += `_Mohon kalkulasikan penawaran harga terbaik untuk pesanan custom kami._`;
+
+            const encodedMsg = encodeURIComponent(message);
+            window.open(`https://wa.me/${waNumber}?text=${encodedMsg}`, '_blank');
+        });
+    </script>
+</body>
+</html>
